@@ -71,7 +71,7 @@ SERVER_PEM=`docker-machine ssh ${B2D_MACHINE_NAME} "openssl x509 -noout -text -i
 #     openssl x509 -checkend 86400 -noout -in ${SERVER_PEM_LOCATION}
 
 #TODO Expose manual regeneration of the cert as a standalone command
-if [[ ${SERVER_PEM} != *"CN=localhost"* && ${SERVER_PEM} != *"IP:127.0.0.1"* ]]; then
+if [[ ${SERVER_PEM} != *"CN=localhost"* && ${SERVER_PEM} != *"IP:127.0.0.1"* && ${SERVER_PEM} != *"DNS:localhost"* ]]; then
     #(Re)create the cert if it's missing localhost or 127.0.0.1
     echo "=====[${B2D_MACHINE_NAME}] Creating a new Docker daemon certificate====="
     #Let's be good citizens.  Preserve the original cert and re-use the private key.
